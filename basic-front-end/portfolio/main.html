@@ -15,95 +15,17 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <style>
-  html, body {
-  height: 100%;
-  font-size:16px;
-}
+<!-- local javascript/jquery file -->
+<script src="js/custom.js"></script>
 
-#wrap {
-  min-height: 100%;
-}
-
-#main {
-  overflow:auto;
-  padding-bottom:75px; 
-}
-
-.footer {
-  position: relative;
-  clear:both;
-  padding-top:20px;
-  background-color:#F8F8F8;    
-} 
-
-.jumbotron {
-  margin-bottom: 0px;
-}
-.jumbotron hr { max-width: 80%; }
-
-/* navbar */
-.navbar {
-  margin-bottom: 0px;
-}
-
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
-  background-color: #4F608F;
-  color: #FFFFFF;
-}
-
-.about img {
-    padding: 10px;
-}
-
-.main-section {
-  color: #FFFFFF;
-  min-height: 400px;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  padding-top:50px;
-}
-.main-section p {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-   vertical-align:middle;
-}
-.home {
-  background-color: #4F608F;
-}
-.about {
-  background-color: #162756;
-}
-.portfolio {
-  background-color: #7986AC;
-}
-
-.contact {
-  background-color: #061439;
-}
-
-.contact-section li {padding: 10px;}
-.contact-section li button {width: 115px;}
-
-.btn-default:hover{
-  background-color: #000000;
-  color: #ffffff;
-}
-
-/*portfolio */
-.caption h3 {margin-top:5px;}
-
-.portfolio-project:hover{color: #000000;}
-
-  </style>
+<!--local stylesheet -->
+<link rel="stylesheet" href="css/style.css">
   
   </head>
+
 <body>
-  <div id="wrap">
- <nav class = "navbar navbar-default" role = "navigation">
+ <!--begin nav menu -->
+ <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
    	<div class="container">
    <div class = "navbar-header">
       <button type = "button" class = "navbar-toggle" 
@@ -128,8 +50,10 @@
    </div>
    </div>
 </nav>
+ <!--end nav menu -->
     
-    
+  <!--begin main body -->
+   <!--begin home - jumbotron section -->
 		 <div class="jumbotron text-center home main-section">
        <div class="container">
        <a name="home"></a>
@@ -153,8 +77,10 @@
 		</button></a>
 		</p>
   </div>  
-       
+    
   </div>
+   <!-- end home - jumbotron section -->  
+   <!-- begin about section --> 
 		  <div class="about main-section">
 			  <div class="container">
 				  <div class="row">
@@ -173,7 +99,8 @@
 				  </div>
 			  
 			  </div>
-			  
+			 <!-- end about section -->
+        <!-- begin portfolio section --> 
 			  <div class="portfolio main-section">
 			  <div class="container">
 				  <a name="portfolio"></a>
@@ -189,10 +116,10 @@
 			</div>
 			 <div class="row text-center">
 					  <div class="col-md-4 portfolio-project">
-						  <img class ="center-block" src="http://lorempixel.com/200/200/sports/1" />
-						  <div class = "caption">
-							<h3>Sample Project</h3>
-							<p>Some sample text. Some sample text.</p>
+						  <a href="http://htmlpreview.github.io/?https://github.com/richardsa/etch-a-sketch/blob/master/index.html"><img class ="center-block" src="http://i.imgur.com/rSdca2V.png" />
+                <div class = "caption"></a>
+							<h3>Etch-a-sketch</h3>
+                <p>Etch-a-sketch project done in javascript</p>
 							</div>	
          
 						  </div>
@@ -238,7 +165,9 @@
 			</div>
 				</div>
 				</div>
-				
+			<!-- end portfolio section -->
+
+      <!-- begin contact section -->
 				<div class="contact main-section">
 			  <div class="container">
 				  <a name="contact"></a>
@@ -271,19 +200,25 @@
 				</div>
 				</div>
  
-  <!-- close wrap div -->
-  </div>
-  
+    <!-- end contact section --> 
+  <!-- begin footer section -->
   
 <footer class="footer">
 	<div class="container">
+  <div class="row">
      <p class="footer-left col-xs-12 col-md-6">
             <a href="#home">Home</a> -
             <a href="#about">About</a> - 
             <a href="#portfolio">Portolio</a> -
             <a href="#contact">Contact</a> 
     </p>
-	</div>	
+    </div>
+    <div class="row">
+    <p class="footer-left col-xs-12 col-md-6" >© 2015 Richie's Design Portfolio</p>
+    </div>
+	</div>
+</footer>
+<!-- end footer --> 	
 </div>
  
 </body>
