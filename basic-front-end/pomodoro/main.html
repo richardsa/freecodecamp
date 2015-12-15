@@ -26,28 +26,28 @@
 <body>
 <div class="container">
      <div class="row text-center">
-  <h1>Richie's Pomdoro Timer</h3>
+  <h1>Richie's Pomodoro Timer</h3>
        <div class="row">
         <div class="col-xs-6">
           <p class="clock-labels">Break Length</p>
           <div id="break-labels">
-          <span id="break-low">-</span>
+          <button id="break-low" class="btn btn-default timeControl">-</button>
           <span id="break-length">5</span>
-          <span id="break-high">+</span>
+          <button id="break-high" class="btn btn-default timeControl">+</button>
           </p>
          </div>
          </div>
         <div class="col-xs-6">
           <p id="clock-labels">Session Length</p>
            <div id="session-labels">
-          <span id="session-low">-</span>
-          <span id="session-length">5</span>
-          <span id="session-high">+</span>
+          <button id="session-low" class="btn btn-default timeControl">-</button>
+          <span id="session-length">25</span>
+          <button id="session-high" class="btn btn-default timeControl">+</button>
           </div>
          </div>
        </div>
       <div id="timer">
-        <h1>Session</h3>
+        <h1 id="label">Session</h3>
         <h1 id="clock">25</h1>
       </div>
   </div>
