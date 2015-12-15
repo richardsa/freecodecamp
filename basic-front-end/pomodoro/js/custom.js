@@ -11,7 +11,6 @@ $(function() {
     $("#break-high").on("click", function() {
       x = parseInt($('#break-length').text());
       $("#break-length").text(x + 1);
-      console.log(swapperHolder);
       if (swapperHolder % 2 === 1) {
         $("#clock").text(x + 1);
         min = x;
@@ -25,7 +24,7 @@ $(function() {
     $("#break-low").on("click", function() {
 
       x = parseInt($('#break-length').text());
-      console.log(x);
+      
       if (x === 1) {
         x = 1;
       } else {
@@ -56,7 +55,7 @@ $(function() {
   function decreaseSession() {
     $("#session-low").on("click", function() {
       x = parseInt($('#session-length').text());
-      console.log(x);
+      
       sec = 59;
       if (x === 1) {
         x = 1;
@@ -68,7 +67,7 @@ $(function() {
         $("#clock").text(x - 1);
 
         min = x - 2;
-        console.log(min);
+        
         sec = 59;
       }
     });
@@ -109,7 +108,7 @@ $(function() {
   $("#timer").on("click", function() {
 
     power += 1;
-    console.log(power);
+    
     //turn off control listeners until clock is stopped
     $(".timeControl").off();
     if (power % 2 === 0) {
