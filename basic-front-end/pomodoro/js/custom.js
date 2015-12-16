@@ -5,12 +5,15 @@ $(function() {
   var sec = 59;
   var min = 24;
   var swapperHolder = 0;
+  var audio = new Audio('http://freesound.org/data/previews/331/331156_321967-lq.mp3');
+  
 
   // increase break length
   function increaseBreak() {
     $("#break-high").on("click", function() {
       x = parseInt($('#break-length').text());
       $("#break-length").text(x + 1);
+      console.log(swapperHolder);
       if (swapperHolder % 2 === 1) {
         $("#clock").text(x + 1);
         min = x;
@@ -24,7 +27,7 @@ $(function() {
     $("#break-low").on("click", function() {
 
       x = parseInt($('#break-length').text());
-      
+      console.log(x);
       if (x === 1) {
         x = 1;
       } else {
@@ -55,7 +58,7 @@ $(function() {
   function decreaseSession() {
     $("#session-low").on("click", function() {
       x = parseInt($('#session-length').text());
-      
+      console.log(x);
       sec = 59;
       if (x === 1) {
         x = 1;
@@ -67,7 +70,7 @@ $(function() {
         $("#clock").text(x - 1);
 
         min = x - 2;
-        
+        console.log(min);
         sec = 59;
       }
     });
@@ -75,13 +78,16 @@ $(function() {
 
   // swap between break and session
   function swapper() {
+    audio.play();
     if (swapperHolder % 2 === 0) {
       $("#label").text("Break!");
-      min = parseInt($('#break-length').text() - 1);
+      min = parseInt($('#break-length').text());
+      sec = 0;
       swapperHolder += 1;
     } else {
       $("#label").text("Session");
-      min = parseInt($('#session-length').text() - 1);
+      min = parseInt($('#session-length').text());
+      sec = 0;
       swapperHolder += 1;
     }
 
@@ -108,7 +114,7 @@ $(function() {
   $("#timer").on("click", function() {
 
     power += 1;
-    
+    console.log(power);
     //turn off control listeners until clock is stopped
     $(".timeControl").off();
     if (power % 2 === 0) {
@@ -119,7 +125,7 @@ $(function() {
 
           if (min === 0) {
             swapper();
-            sec = 59;
+            
           } else {
             min -= 1;
             sec = 59
