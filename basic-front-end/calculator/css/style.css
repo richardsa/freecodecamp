@@ -1,0 +1,13 @@
+.btn {
+  width: 45px;
+  padding: 10px;
+  margin: 10px;
+}
+
+#calc-screen {
+  width: 250px;
+  height: 45px;
+  background-color: #C7C7B0;
+  margin-left: auto;
+  margin-right: auto;
+}
