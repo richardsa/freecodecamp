@@ -1,68 +1,44 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>Richie's Pomodoro Timer</title>
-   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<!-- font awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!-- local javascript/jquery file -->
-<script src="js/custom.js"></script>
-
-<!--local stylesheet -->
-<link rel="stylesheet" href="css/style.css">
-  
-  </head>
 <body>
-<div class="container calculator">
-  <div class="row text-center">
-    <h3><em>FreeCodeCamp</em></h3>
-    <h3>Richie Calculator</h3>
-    <div id="calc-screen">
-    </div>
-    <div id="calc-controls">
-      <div class="row calc-buttons">
-        <button class="btn btn-default">AC</button>
-        <button class="btn btn-default">C</button>
-        <button class="btn btn-default">%</button>
-        <button class="btn btn-default">&divide;</button>
-      </div>
-      <div class="row calc-buttons">
-        <button class="btn btn-default">7</button>
-        <button class="btn btn-default">8</button>
-        <button class="btn btn-default">9</button>
-        <button class="btn btn-default">X</button>
-      </div>
-      <div class="row calc-buttons">
-        <button class="btn btn-default">4</button>
-        <button class="btn btn-default">5</button>
-        <button class="btn btn-default">6</button>
-        <button class="btn btn-default">-</button>
-      </div>
-      <div class="row calc-buttons">
-        <button class="btn btn-default">1</button>
-        <button class="btn btn-default">2</button>
-        <button class="btn btn-default">3</button>
-        <button class="btn btn-default">+</button>
-      </div>
-      <div class="row calc-buttons">
-        <button class="btn btn-default">0</button>
-        <button class="btn btn-default">.</button>
-        <button class="btn btn-default">=</button>
-        <button class="btn btn-default">+</button>
+  <div class="container">
+    <div class="row text-center">
+      <div id="calculator">
+        <h3><em>FreeCodeCamp</em></h3>
+        <h3>Richie Calculator</h3>
+        <div id="calc-screen">
+        </div>
+        <div id="calc-controls">
+          <div class="row calc-buttons">
+            <button id="all-clear" class="btn btn-default control">AC</button>
+            <button id="clear-entry" class="btn btn-default control">CE</button>
+            <button id="percent" class="btn btn-default control">%</button>
+            <button id="divide" class="btn btn-default control">&divide;</button>
+          </div>
+          <div class="row calc-buttons">
+            <button class="btn btn-default calc-number">7</button>
+            <button class="btn btn-default calc-number">8</button>
+            <button class="btn btn-default calc-number">9</button>
+            <button id="multiply" class="btn btn-default control">x</button>
+          </div>
+          <div class="row calc-buttons">
+            <button class="btn btn-default calQc-number">4</button>
+            <button class="btn btn-default calc-number">5</button>
+            <button class="btn btn-default calc-number">6</button>
+            <button id="subtract" class="btn btn-default control">-</button>
+          </div>
+          <div class="row calc-buttons">
+            <button class="btn btn-default calc-number">1</button>
+            <button class="btn btn-default calc-number">2</button>
+            <button class="btn btn-default calc-number">3</button>
+            <button id="add" class="btn btn-default control">+</button>
+          </div>
+          <div class="row calc-buttons">
+            <button class="btn btn-default calc-number">0</button>
+            <button id="decimal" class="btn btn-default control">.</button>
+            <button id="equal" class="btn btn-default control">=</button>
+            <button id="add" class="btn btn-default control">+</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </body>
-
-</html>

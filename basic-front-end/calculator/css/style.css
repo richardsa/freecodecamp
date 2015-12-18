@@ -10,4 +10,20 @@
   background-color: #C7C7B0;
   margin-left: auto;
   margin-right: auto;
+  font-size: 26px;
+  text-align: right;
+  padding-right: 10px;
+  color: #000000;
+}
+
+#calculator {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  border: solid 1px;
+  margin-top: 10px;
+  border-radius: 5%;
+  padding: 15px;
+  background-color: #37384C;
+  color: #ffffff;
 }
