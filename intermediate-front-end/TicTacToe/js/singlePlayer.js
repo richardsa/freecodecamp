@@ -106,10 +106,21 @@ function computerMove(counter){
     moveNumber = 0;
     move = computer;
     checkMoves(computerMoves, moveNumber);
-  } else if (){
-
+  } else if (counter === 2){
+    if (playerMoves[0] === 8){
+      moveNumber = 6;
+    } else {
+      moveNumber = 8;
+    }
+  } else if (counter === 4) {
+    if (computerMoves[1] === 8){
+      // play 6 empty play there if not play 2
+    } else if (computerMoves[1] === 6){
+      //if 3 empty move there if not play 2
+    }
   }
-
+  move = computer;
+  checkMoves(computerMoves, moveNumber);
 }
 
   // main game function
