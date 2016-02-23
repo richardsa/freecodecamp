@@ -1,28 +1,45 @@
 $(function() {
-  var power = 0;
+
   // declare global variables
+  // strict mode on or off
+  var strictCounter = 0;
+  var strict = false;
+  // hold interval id values
+  var intervalIds = [];
+  var playerIntervalIds = [];
   // hold computer Moves
   var computerMoves = [];
+
   // hold player moves
   var playerMoves = [];
   //move variable to keep track of user's score and computer position in array
   var move = 1;
+  // counter variable to compare again move variable for each player's move
   var counter = 0;
-  var i = 0;
-  //testing variables
-  var id;
+  // identifies square to play
   var thisId;
+  // holds value for square to apply css to animate pressing square
   var remove;
-  var audio;
-  var keepLooping = true;
-  var interval;
+  // holds value for computer setInterval
   var looper;
   //function that picks music sample to play based on move
-  var continueGame = true;
-  var test;
 
+  // variables for try again function
+  var tryAgainCounter = 0;
+  var tryAgainLooper;
+  var x = 0;
+
+  //initialize power toggle button
+  $("[name='power-switch']").bootstrapSwitch();
+
+  // audio variables
+  var audio0 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3');
+  var audio1 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
+  var audio2 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3');
+  var audio3 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
+
+  //function for playing correct music sample based on move
   function playMusic(id) {
-    console.log('huh');
     switch (id) {
       case 0:
         audio0.play();
@@ -38,84 +55,11 @@ $(function() {
         break;
     }
   }
-  $("[name='power-switch']").bootstrapSwitch();
-  var audio0 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3');
-  var audio1 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
-  var audio2 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3');
-  var audio3 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
 
-function playerAnimateMove(id){
-
-}
-
-function printMove(){
+  // function to increment move number
+  function printMove() {
     $("#count-screen").text(move);
-}
-function player(){
-  $(".gameButton").on("click", function() {
-    id = parseInt(event.target.id);
-    thisId = "#" + id;
-    remove = "active" + id;
-    console.log(id);
-    counter+=1;
-    playerLoop();
-    playMusic(id);
-    $(thisId).addClass(remove);
-    setTimeout(function() {
-      $(thisId).removeClass(remove);
-    }, 400);
-  });
-
-/*  $(".top-left").on("click", function() {
-    audio0.play();
-    power+=1;
-
-    counter += 1;
-    console.log(counter);
-    playerLoop();
-    $(this).addClass('active0');
-    setTimeout(function() {
-      $('.top-left').removeClass("active0");
-    }, 400);
-  });
-  $(".top-right").on("click", function() {
-    audio1.play();
-    $(this).addClass('active1');
-    setTimeout(function() {
-      $('.top-right').removeClass("active1");
-    }, 400);
-  });
-  $(".bottom-left").on("click", function() {
-    audio2.play();
-    $(this).addClass('active2');
-    setTimeout(function() {
-      $('.bottom-left').removeClass("active2");
-    }, 400);
-  });
-  $(".bottom-right").on("click", function() {
-    audio3.play();
-    $(this).addClass('active3');
-    setTimeout(function() {
-      $('.bottom-right').removeClass("active3");
-
-    }, 400);
-
-  });*/
-}
-
-function playerLoop(){
-  if ( counter >= move){
-    $(".gameButton").off();
-    console.log("counter: " + counter + " and move: " + move);
-    counter = 0;
-    move+=1;
-  computerDemo();
   }
-
-  }
-
-
-
 
   //function to reset computer moves and player moves
   function resetScores() {
@@ -131,49 +75,142 @@ function playerLoop(){
     }
   }
 
+  // fucntion to stop computer looper
+  function stopLooper() {
+    for (var i = 0; i < intervalIds.length; i++) {
+      clearInterval(intervalIds[i]);
+    }
+    counter = 0;
+    playerMoves = [];
+    player();
+  }
   // function to remove active color from played id
   function resetClass() {
     $(thisId).removeClass(remove);
   }
   // function to display computer moves
   function computerMoveDisplay() {
-    if (counter < move) {
+    if (counter === move) {
+      stopLooper();
+    } else {
       printMove();
       thisId = "#" + computerMoves[counter];
       remove = "active" + computerMoves[counter];
-      console.log(thisId);
       $(thisId).addClass(remove);
       playMusic(computerMoves[counter]);
-      window.setTimeout(resetClass, 1000);
-      counter ++;
-    } else {
-      window.clearInterval(looper);
-      console.log("finished baby!");
-        console.log(power);
-        counter = 0;
-        player();
+      setTimeout(resetClass, 500);
+      counter++;
     }
-
   }
   // main computer move loop
   function computerDemo() {
-    looper = window.setInterval(computerMoveDisplay, 2000);
+    x = 1;
+    looper = setInterval(computerMoveDisplay, 1000);
+    intervalIds.push(looper);
+  }
+  // function for restarting game if user makes incorrect move
+  function tryAgain() {
+    if (tryAgainCounter >= 3) {
+      for (var i = 0; i < playerIntervalIds.length; i++) {
+        clearInterval(playerIntervalIds[i]);
+      }
+      //tryAgainLooper = undefined;
+      playerMoves = [];
+      counter = 0;
+      move = 1;
+      computerDemo();
+      tryAgainCounter = 0;
+    }
+    $("#count-screen").text("-- ");
+    $('#count-screen').fadeOut(200);
+    $('#count-screen').fadeIn(200);
+    tryAgainCounter += 1;
   }
 
+
+  function player() {
+    $(".gameButton").unbind("click").click(function(event) {
+      id = parseInt(event.target.id);
+      playerMoves.push(id);
+      thisId = "#" + id;
+      remove = "active" + id;
+      $(thisId).addClass(remove);
+      setTimeout(function() {
+        $(thisId).removeClass(remove);
+      }, 400);
+      playMusic(id);
+      checkMove();
+    });
+  }
+
+  // function to check user's move
+  function checkMove() {
+    for (var i = 0; i < counter + 1; i++) {
+      if (playerMoves[i] != computerMoves[i]) {
+        if (strict) {
+          tryAgainLooper = setInterval(tryAgain, 450);
+          playerIntervalIds.push(tryAgainLooper);
+          resetScores();
+          return;
+        } else {
+          tryAgainLooper = setInterval(tryAgain, 450);
+          playerIntervalIds.push(tryAgainLooper);
+          return;
+        }
+      }
+    }
+    counter += 1;
+    playerLoop();
+  }
+
+  // moves game back to computer when ready
+  function playerLoop() {
+    if (counter === 20) {
+      alert('You win! Great job!');
+      resetScores();
+      computerDemo();
+    } else if (counter === move) {
+      $(".gameButton").off();
+      counter = 0;
+      move += 1;
+      playerMoves = [];
+      setTimeout(computerDemo, 500);
+    }
+  }
+  // toggle strict mode
+  function strictMode() {
+    $("#strictBtn").on("click", function() {
+      strictCounter += 1;
+      if (strictCounter % 2 === 1) {
+        $('#strictBtn').addClass('strictOn');
+        strict = true;
+      } else {
+        $('#strictBtn').removeClass('strictOn');
+        strict = false;
+      }
+    });
+  }
   //power button controls
   $('#power-toggle').on('switchChange.bootstrapSwitch', function(event, state) {
     if ($(this).is(':checked')) {
       $("#count-screen").text("-- ");
       resetScores();
+      startGame();
+      strictMode();
     } else {
+      stopLooper();
       $("#count-screen").text("");
+      resetScores();
+
     }
   });
 
   //start button click - reinitialize computer moves array
-  $('#startBtn').on("click", function() {
-          computerDemo();
-  });
-  //computerDemo();
+  function startGame() {
+    $('#startBtn').on("click", function() {
+      computerDemo();
+    });
+  }
 
+// closing brackets
 });
